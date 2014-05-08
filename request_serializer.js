@@ -5,7 +5,7 @@ exports.req = function(req) {
     ip: req.ip,
     ips: req.ips,
     juid: req.cookies.juid,
-    sessionId: req.session? req.session.id : null,
+    sessionId: req.session ? req.session.id : null,
     userAgent: req.useragent,
     user: (req.user && req.user.isAuthenticated) ? _.pick(req.user, 'displayName', '_id') : {}
   })
