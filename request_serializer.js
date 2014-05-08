@@ -5,9 +5,9 @@ exports.req = function(req) {
     ip: req.ip,
     ips: req.ips,
     juid: req.cookies.juid,
-    sessionId: req.session.id,
+    sessionId: req.session ? req.session.id : null,
     userAgent: req.useragent,
-    user: (req.user.isAuthenticated) ? _.pick(req.user, 'displayName', '_id') : {}
+    user: (req.user && req.user.isAuthenticated) ? _.pick(req.user, 'displayName', '_id') : {}
   })
   delete reqInfo.headers.authorization;
   return reqInfo;

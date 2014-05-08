@@ -2,8 +2,18 @@ var Logger = require('bunyan'),
     _ = require("underscore"),
     reqSerializer = require('./request_serializer')
 
-module.exports = function(logdir) {
+exports.middleware = function(log) {
+    return function(req, res, next) {
+      if (/^\/log/.test(req.url)) return next()
+
+      log.info({req: req})
+      next()
+    }
+}
+
+exports.loggers = function(logdir) {
   return {
+
     request: new Logger({
       name: 'request',
       streams: [
