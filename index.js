@@ -13,6 +13,11 @@ exports.middleware = function(log) {
 
 exports.loggers = function(logdir) {
   return {
+    appLogger: new Logger({
+      name: 'app',
+      stream: process.stdout,
+      level: 'debug'
+    }),
 
     request: new Logger({
       name: 'request',
