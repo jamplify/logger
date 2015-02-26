@@ -1,11 +1,12 @@
 {
   "name": "logger",
   "description": "logging",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "private": true,
   "dependencies": {
-    "underscore": "^1.6.0",
-    "bunyan": "^0.22.3"
+    "bunyan": "^0.22.3",
+    "lodash": "^3.3.1",
+    "superagent": "^0.21.0"
   },
   "devDependencies": {
     "mocha": "<= 1.18.2",
@@ -13,5 +14,14 @@
     "sinon": ">= 1.9.1",
     "supertest": "^0.12.0",
     "express": "^4.1.1"
+  },
+  "jshintConfig": {
+    "eqeqeq": true,
+    "indent": 2,
+    "esnext": true,
+    "asi": true,
+    "maxlen": 80,
+    "singleGroups": true,
+    "unused": true
   }
 }
