@@ -1,9 +1,23 @@
 var Logger = require('bunyan'),
     _ = require("lodash"),
-    reqSerializer = require('./request_serializer')
+    reqSerializer = require('./request_serializer'),
+    PrettyStream = require('bunyan-prettystream')
+
+var prettyStdOut = new PrettyStream();
+prettyStdOut.pipe(process.stdout);
 
 module.exports = function(logdir) {
   return {
+    app: new Logger({
+      name: 'app',
+      stream: prettyStdOut,
+      level: 'debug',
+      serializers: {
+        req: reqSerializer.req,
+        err: Logger.stdSerializers.err
+      }
+    }),
+
     request: new Logger({
       name: 'request',
       streams: [
