@@ -11,5 +11,6 @@ module.exports = function(logdir) {
   return function(req, res, next) {
     if(skipTest(req)) return next();
     log.info({req: req})
+    next()
   }
 }
