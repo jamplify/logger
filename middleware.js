@@ -1,6 +1,4 @@
-var streams = require('./streams'),
-    bunyan = require('bunyan'),
-    reqSerializer = require('./request_serializer')
+var Loggers = require('./server')
 
 function skipTest(req) {
   var result = /post/i.test(req.method) && /^\/log\//.test(req.url)
@@ -8,17 +6,10 @@ function skipTest(req) {
 }
 
 module.exports = function(logdir) {
-  var ebl = require('express-bunyan-logger')({
-    logtype: 'request',
-    streams: streams(logdir),
-    serializers: {
-      req: reqSerializer,
-      err: bunyan.stdSerializers.err,
-    }
-  })
+  var log = Loggers('request', logdir).std
 
- return function(req, res, next) {
+  return function(req, res, next) {
     if(skipTest(req)) return next();
-    ebl.apply(this, arguments)
+    log.info({req: req})
   }
 }
