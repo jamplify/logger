@@ -7,7 +7,7 @@ function skipTest(req) {
 
 module.exports = function(logdir) {
   var ebl = require('express-bunyan-logger')({
-    name: 'request',
+    logtype: 'request',
     streams: streams(logdir)
   })
 
