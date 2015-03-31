@@ -2,10 +2,7 @@ module.exports = function(logdir) {
  return [
     {
       level: 'info',
-      type: 'rotating-file',
-      path: logdir + '/nodejson.log',
-      period: '1d',
-      count: 30
+      path: logdir + '/nodejson.log'
     },
     {
       level: 'debug',
