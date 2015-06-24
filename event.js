@@ -3,7 +3,6 @@ var category = ""
 var handler = function(event) {
   var label = event.label || $(this).attr('data-label')
 
-  _gaq.push(['_trackEvent', category, event.type, label])
   request.post('/log/' + event.type)
     .send({
       category: category,
