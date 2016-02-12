@@ -1,5 +1,6 @@
 {
-  "name": "@jamplify/logger",
+  "private": true,
+  "name": "logger",
   "description": "logging",
   "version": "0.0.7",
   "dependencies": {
