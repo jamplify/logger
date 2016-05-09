@@ -1,12 +1,14 @@
 var request = require('superagent')
 var category = ""
 var handler = function(event) {
-  var label = event.label || $(this).attr('data-label')
+  var label = event.label || $(this).attr('data-label'),
+    data = event.data || $(this).attr('data-data')
 
   request.post('/log/' + event.type)
     .send({
       category: category,
-      label: label
+      label: label,
+      data: data
     })
     .end()
 }
@@ -25,5 +27,7 @@ var Logger = module.exports = function(cat) {
   $(document).on("change.loggable", ".loggable[data-action='change']", handler)
 }
 
-Logger.log = function(type, label) { handler({type: type, label: label}) }
+Logger.log = function(type, label, data) {
+  handler({type: type, label: label, data: data})
+}
 
