@@ -3,7 +3,6 @@ module.exports = function(app, log) {
     var elog = log.child({ logtype: 'event' })
 
   app.post('/log/:action', function(req, res) {
-    log.debug({body: req.body}, "logger")
     res.send(200)
     elog.info({
       event: _.extend(req.body, {
